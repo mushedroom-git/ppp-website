@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0b0a;
+  --color-bg-2: #0f110f;
+  --color-surface: #141614;
+  --color-surface-2: #1a1d1a;
+  --color-line: #232723;
+  --color-fg: #f2f4f1;
+  --color-muted: #8e958d;
+  --color-green: #7cff3a;
+  --color-green-light: #95ff62;
+  --color-red: #ff5a4e;
+
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-display: "Lexend", system-ui, sans-serif;
+
+  --ease-snap: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --animate-fade-up: fade-up 0.9s var(--ease-snap) both;
+  --animate-fade-in: fade-in 1.6s 0.7s ease both;
+  --animate-pc-in: pc-in 1.3s 0.15s var(--ease-snap) both;
+  --animate-beam: beam 1.4s 0.5s var(--ease-snap) both;
+  --animate-breathe: breathe 5s 1.5s ease-in-out infinite;
+  --animate-grow: grow 0.8s 0.2s var(--ease-snap) both;
+
+  @keyframes fade-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes fade-in { from { opacity: 0; } }
+  @keyframes pc-in { from { opacity: 0; transform: translateX(30px) scale(0.97); } to { opacity: 1; transform: none; } }
+  @keyframes beam { from { opacity: 0; transform: scaleY(0); } to { opacity: 0.85; transform: none; } }
+  @keyframes breathe { 0%, 100% { opacity: 0.65; } 50% { opacity: 1; } }
+  @keyframes grow { from { transform: scaleX(0); } }
+}
+
+@utility wrap {
+  margin-inline: auto;
+  max-width: 1240px;
+  padding-inline: 20px;
+  @variant md { padding-inline: 32px; }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-bg font-sans text-base leading-relaxed text-fg antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { @apply font-display; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--color-green); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+}
